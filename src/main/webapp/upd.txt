@@ -1,0 +1,12 @@
+设置场次价格不需要传递：
+	// 站票总量
+	private Integer ticketTotal;
+	// 限制数
+	private Integer ticketLimit;
+
+
+scheduleStandPriceList 增加输入参数scheduleVenueAreaId
+venueAreaId
+
+
+venueAreaId

@@ -1,0 +1,23 @@
+<data>
+	<schedulePriceList>
+		#foreach($voucher in $voucherList)
+		<schedulePrice>
+			<voucherId>$!voucher.id</voucherId>
+			<voucherNo>$!voucher.voucherNo</voucherNo>
+			<scheduleId>$!voucher.scheduleId</scheduleId>
+			<programId>$!voucher.programId</programId>
+			<seatAmount>$!voucher.seatAmount</seatAmount>
+			<seatNum>$!voucher.seatNum</seatNum>
+			<addTime>$!voucher.addTime</addTime>
+			#set($customer=$customerMap.get($voucher.id))
+			<customer>
+				<customerName>$!customer.customerName</customerName>
+				<customerMobile>$!customer.customerMobile</customerMobile>
+				<customerPhone>$!customer.customerPhone</customerPhone>
+				<provinceName>$!customer.provinceName</provinceName>
+				<customerAddress>$!customer.customerAddress</customerAddress>
+			</customer>
+		</schedulePrice>
+		#end
+	</schedulePriceList>
+</data>

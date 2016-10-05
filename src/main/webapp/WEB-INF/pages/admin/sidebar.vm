@@ -1,0 +1,57 @@
+<a href="#" id="menu-toggler" class="menu-toggler">
+	<span class="menu-text"></span>
+</a>
+<div id="sidebar" class="sidebar sidebar-fixed">
+	<script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+	</script>
+	<div id="sidebar-shortcuts" class="sidebar-shortcuts">
+		<div id="sidebar-shortcuts-large" class="sidebar-shortcuts-large">
+			<button class="btn btn-success"><i class="icon-signal"></i></button>
+			<button class="btn btn-info"><i class="icon-pencil"></i></button>
+			<button class="btn btn-warning"><i class="icon-group"></i></button>
+			<button class="btn btn-danger"><i class="icon-cogs"></i></button>
+		</div>
+		<div id="sidebar-shortcuts-mini" class="sidebar-shortcuts-mini">
+			<span class="btn btn-success"></span>
+			<span class="btn btn-info"></span>
+			<span class="btn btn-warning"></span>
+			<span class="btn btn-danger"></span>
+		</div>
+	</div>
+	<ul class="nav nav-list">
+		<li>
+			<a href="${basePath}admin/main.xhtml">
+				<i class="icon-dashboard"></i><span class="menu-text"> 控制台 </span>
+			</a>
+		</li>
+		<li #if($isStadiumMenu)class="active open"#end>
+			<a class="dropdown-toggle" href="#">
+				<i class="icon-desktop"></i><span class="menu-text"> 场馆管理 </span><b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li #if($isStadium)class="active"#end><a href="${basePath}admin/stadium/list.xhtml"><i class="icon-double-angle-right"></i>场馆列表</a></li>
+			</ul>
+		</li>
+		<li #if($isProgramMenu)class="active open"#end>
+			<a class="dropdown-toggle" href="#">
+				<i class="icon-user"></i><span class="menu-text"> 项目查看 </span><b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li #if($isProgram)class="active"#end><a href="#"><i class="icon-double-angle-right"></i>项目列表</a></li>
+			</ul>
+		</li>
+		<li #if($isApiMenu)class="active open"#end>
+			<a class="dropdown-toggle" href="#">
+				<i class="icon-user"></i><span class="menu-text"> 接口管理 </span><b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li #if($isApiInfo)class="active"#end ><a href="${basePath}admin/api/info.xhtml"><i class="icon-double-angle-right"></i>接口说明</a></li>
+				<li #if($isMethodList)class="active"#end ><a href="${basePath}admin/api/methodList.xhtml"><i class="icon-double-angle-right"></i>接口列表</a></li>
+			</ul>
+		</li>
+	</ul>
+	<script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+	</script>
+</div>

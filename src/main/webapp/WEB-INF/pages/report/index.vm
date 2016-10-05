@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>报表</title>
+<!--[if lte IE 9]>
+<script src="${basePath}bootstrap/respond.min.js"></script>
+<script src="${basePath}bootstrap/html5.js"></script>
+<![endif]-->
+<script src="${basePath}jquery/2.0.3/jquery.min.js"></script>
+<script src="${basePath}bootstrap/js/bootstrap.min.js"></script>
+<script src="${basePath}dpicker/WdatePicker.js"></script>
+<link type="text/css" rel="stylesheet" href="${basePath}bootstrap/css/bootstrap.min.css" />
+</head>
+<body>#set($isMemberReport=true)
+	#parse('WEB-INF/pages/report/menu.vm')
+	<div id="container">
+		<div class="col-md-10">&nbsp;</div>
+		<div class="col-md-10">
+			<form action="${basePath}client/report/index.xhtml" class="form-inline" role="form">
+				项目：<select name="programId" id="programId" class="form-control">
+					<option value="" #if(!$!params.programId)selected="selected"#end>可选项目</option>
+					#foreach($program in $programList)
+					<option value="$program.id" #if($!params.programId eq $program.id)selected="selected"#end>$program.cnName</option>
+					#end
+				</select>&nbsp;&nbsp;
+				卖出时间：<input type="text" class="form-control" name="startTime" id="startTime" 
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:00:00'})" value="$!params.startTime"  readonly="readonly" style="width: 180px;"/>
+					--<input type="text" class="form-control" name="endTime" id="endTime" 
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:00:00'})" value="$!params.endTime"  readonly="readonly" style="width: 180px;"/>
+				<input type="submit" class="btn btn-default" value="搜索"/>
+			</form>
+		</div>
+		<div class="col-md-10">&nbsp;</div>
+		<table class="table table-bordered">
+		   <thead>
+		      <tr>
+		      	 <th>序号</th>
+		         <th>用户名</th>
+		         <th>订单数</th>
+		         <th>票数</th>
+		         <th>总金额</th>
+		         <th>优惠金额</th>
+		         <th>实收金额</th>
+		      </tr>
+		   </thead>
+		   <tbody>#set($sumCount=0)#set($sumSeatNum=0)#set($sumSeatAmount=0)#set($sumDiscount=0)
+		   	  #foreach($resMap in $resMapList)
+		   	  #set($dueAmount=$!resMap.seatAmount - $!resMap.discount)
+		   	  #set($sumCount=$sumCount + $!resMap.count)
+		   	  #set($sumSeatNum=$sumSeatNum + $!resMap.seatNum)
+		   	  #set($sumSeatAmount=$sumSeatAmount + $!resMap.seatAmount)
+		   	  #set($sumDiscount=$sumDiscount + $!resMap.discount)
+		      <tr class="active">
+		         <td>$!foreach.count</td>
+		         <td>$!resMap.memberName</td>
+		         <td>$!resMap.count</td>
+		         <td>$!resMap.seatNum</td>
+		         <td>$!resMap.seatAmount</td>
+		         <td>$!resMap.discount</td>
+		         <td>$!dueAmount</td>
+		      </tr>
+		      #end
+		      <tr class="success">#set($sumDueAmount=$!sumSeatAmount - $!sumDiscount)
+		      	<td>合计</td>
+		      	<td>&nbsp;</td>
+		      	<td>$!sumCount</td>
+		      	<td>$!sumSeatNum</td>
+		      	<td>$!sumSeatAmount</td>
+		      	<td>$!sumDiscount</td>
+		      	<td>$!sumDueAmount</td>
+		      </tr>
+		   </tbody>
+		</table>
+	</div>
+</body>
+</html>

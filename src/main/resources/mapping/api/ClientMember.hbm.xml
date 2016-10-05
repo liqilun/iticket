@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	 "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.api.ClientMember" table="client_member" lazy="false">
+		<id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<property name="memberName" type="string" column="member_name" />
+		<property name="password" type="string" column="password" />
+		<property name="status" type="string" column="status" />
+		<property name="manager" type="string" column="manager" />
+		<property name="stadiumId" type="long" column="stadium_id" />
+	</class>
+</hibernate-mapping>

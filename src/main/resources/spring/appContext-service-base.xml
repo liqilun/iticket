@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<context:component-scan base-package="com.iticket.dao,com.iticket.service,com.iticket.untrans,com.iticket.job" />
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<aop:config>
+		<aop:advisor id="serviceTx" advice-ref="txAdvice" pointcut="execution(public * com.iticket.service..*.*(..))" order="1" />
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Exception" />
+			<tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="load*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="find*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="is*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="search*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="init*" read-only="true" propagation="SUPPORTS"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="/WEB-INF/template"/>
+		<property name="configLocation" value="classpath:velocity.properties" />
+	</bean>
+	<bean id="velocityTemplate" class="com.iticket.support.VelocityTemplate" >
+		<property name="velocityEngine" ref="velocityEngine"/>
+		<property name="config" ref="config"/>
+	</bean>
+</beans>

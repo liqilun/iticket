@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/mvc  
+        	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	<context:component-scan base-package="com.iticket.web.action,com.iticket.web.servlet" />
+	<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="com.iticket.web.support.GBBindingInitializer"/>
+		</property>
+		<property name="messageConverters">  
+			<list>  
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<constructor-arg value="utf-8"/>
+				</bean>
+			</list>  
+		</property>
+	</bean>  
+	<bean id="handlerExceptionResolver"
+		class="com.iticket.web.support.PageExceptionResolver">
+		<property name="warnLogCategory" value="pageError" />
+		<property name="defaultStatusCode" value="404" />
+		<property name="defaultErrorView" value="404.vm" />
+	</bean>
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+            <list>
+                <value>classpath:messages</value>
+            </list>
+        </property>
+        <property name="useCodeAsDefaultMessage" value="false"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="60"/>
+	</bean>
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="3"/>
+		<property name="requestContextAttribute" value="rc" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="viewNames" value="*.jsp,*.xhtml,*.html,*.shtml"/>
+	</bean>
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/"/>
+		<property name="configLocation" value="classpath:velocity.properties"/>
+	</bean>
+	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="viewNames" value="*.vm"/>
+		<property name="contentType" value="text/html;charset=UTF-8"/>
+		<property name="viewClass" value="com.iticket.web.support.GewaVelocityView" />
+	</bean>
+	<bean id="beanNameViewResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1"/>
+	</bean>
+	<bean id="beanNameUrlHandlerMapping"
+		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!--  <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+        <property name="validator" ref="validator"/>
+    </bean>
+
+    指定自己定义的validator
+    <mvc:annotation-driven validator="validator"/>
+
+    以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean> -->
+    
+</beans>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<${root}List>
+	#foreach($resMap in $resultMap.keySet())
+	#set($resMapList=$resultMap.get($resMap))
+	<${root}>
+		$!VmUtils.xmlOutput('', $resMap, false, null)
+		#set($nextList=$nextroot+'List')
+		#set($nt=$nextroot)
+		$!VmUtils.xmlOutputList($nextList,$nt, $resMapList, $hasField, $fieldList)
+	</${root}>
+	#end
+	</${root}List>
+</data>

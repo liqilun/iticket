@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.schedule.Schedule" table="schedule" lazy="false">
+		<id name="id" type="long" column="recordid">
+			<generator class="native" />
+		</id>
+		<property name="stadiumId" type="long" column="stadium_id" />
+		<property name="code" type="string" column="code" />
+		<property name="cnName" type="string" column="cn_name"/>
+		<property name="enName" type="string" column="en_name"/>
+		<property name="status" type="string" column="status"/>
+		<property name="seat" type="string" column="seat"/>
+		<property name="playTime" type="timestamp" column="play_time" />
+		<property name="playEndTime" type="timestamp" column="play_endtime" />
+		<property name="integerernalTime" type="timestamp" column="integerernal_time"/>
+		<property name="integerernalEndTime" type="timestamp" column="integerernal_endtime"/>
+		<property name="externalTime" type="timestamp" column="external_time" />
+		<property name="externalEndTime" type="timestamp" column="external_endtime" />
+		<property name="active" type="string" column="active" />
+		<property name="programId" type="long" column="program_id" />
+		<property name="venueId" type="long" column="venue_id" />
+		<property name="fixed" type="string" column="fixed" />
+		<property name="layoutId" type="long" column="layout_id" />
+		<property name="venueBackground" type="string" column="venue_background" />
+		<property name="addTime" type="timestamp" column="add_time" />
+		<property name="memberId" type="long" column="member_id" />
+		<property name="delStatus" type="string" column="del_status" />
+	</class>
+</hibernate-mapping>

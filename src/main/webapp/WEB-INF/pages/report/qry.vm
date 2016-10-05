@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>报表</title>
+<!--[if lte IE 9]>
+<script src="${basePath}bootstrap/respond.min.js"></script>
+<script src="${basePath}bootstrap/html5.js"></script>
+<![endif]-->
+<script src="${basePath}jquery/2.0.3/jquery.min.js"></script>
+<script src="${basePath}bootstrap/js/bootstrap.min.js"></script>
+<script src="${basePath}js/highcharts/highcharts.js"></script>
+<link type="text/css" rel="stylesheet" href="${basePath}bootstrap/css/bootstrap.min.css" />
+</head>
+<body>#set($isQryReport=true)
+	#parse('WEB-INF/pages/report/menu.vm')
+	<div id="container">
+		<div class="col-md-10">&nbsp;</div>
+		<div class="col-md-10">
+			<form action="${basePath}client/report/qry.xhtml" class="form-inline" role="form">
+				订单号：<input type="text" class="form-control" name="voucherNo" id="voucherNo" value="$!params.voucherNo" style="width: 180px;"/>&nbsp;&nbsp;
+				客户手机号：<input type="text" class="form-control" name="customerMobile" id="customerMobile" value="$!params.customerMobile" style="width: 150px;"/>
+				客户姓名：<input type="text" class="form-control" name="customerName" id="customerName" value="$!params.customerName" style="width: 150px;"/>
+				<input type="submit" class="btn btn-default" value="搜索"/>
+			</form>
+		</div>
+		<div class="col-md-10">&nbsp;</div>
+		<table class="table table-bordered">
+		   <thead>
+		      <tr>
+		         <th>座位类型</th>
+		         <th>凭证类型类型</th>
+		         <th>场次</th>
+		         <th>项目</th>
+		         <th>场地</th>
+		         <th>区域</th>
+		         <th>数量</th>
+		         <th>座位</th>
+		         <th>付款金额</th>
+		         <th>优惠金额</th>
+		         <th>实付金额</th>
+		         <th>操作人</th>
+		         <th>时间</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		   	  #foreach($voucher in $voucherList)
+		      <tr class="active">
+		      	 <td>#if($VmUtils.eq($!voucher.stand,'Y'))站票#{else}座票#end</td>
+		      	  <td>$pztypeMap.get($voucher.pzType)</td>
+		         <td>$!voucher.scheduleCnName</td>
+		         <td>$!voucher.programCnName</td>
+		         <td>$!voucher.venueCnName</td>
+		         <td>$!voucher.venueAreaCnName</td>
+		         <td>$!voucher.seatNum</td>
+		         <td>$!voucher.seatText</td>
+		         #if($VmUtils.eq($!voucher.payStatus,'Y'))
+		         #set($dueAmount=$!voucher.seatAmount - $!voucher.discount)
+		         <td>#if($VmUtils.eq($$voucher.pzType,'T'))-#end$!voucher.seatAmount</td>
+		         <td>#if($VmUtils.eq($$voucher.pzType,'T'))-#end$!voucher.discount</td>
+		         <td>#if($VmUtils.eq($$voucher.pzType,'T'))-#end$!dueAmount</td>
+		         #else
+		         <td>0</td>
+		         <td>0</td>
+		         <td>0</td>
+		         #end
+		         <td>$!voucher.memberName</td>
+		         <td>$!DateUtil.format($voucher.addTime,'yyyy-MM-dd HH:mm')</td>
+		      </tr>
+		      #end
+		   </tbody>
+		</table>
+		
+	</div>
+<script>
+
+</script>
+</body>
+</html>

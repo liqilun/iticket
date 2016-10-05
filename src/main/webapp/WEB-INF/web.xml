@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>	
+	</welcome-file-list>
+	<context-param>
+		<description>Spring configFile, overrided by StartupListener</description>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/appContext-*.xml</param-value>
+	</context-param>
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>
+			org.springframework.web.util.IntrospectorCleanupListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			com.iticket.web.listener.StartupListener
+		</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>com.iticket.web.support.GewaDispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/action-servlet-*.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<servlet>   
+        <servlet-name>checkcode</servlet-name>   
+        <servlet-class>   
+            com.iticket.web.action.CheckCodeServlet   
+        </servlet-class>   
+    </servlet>   
+    <servlet-mapping>   
+        <servlet-name>checkcode</servlet-name>   
+        <url-pattern>/checkcode</url-pattern>   
+    </servlet-mapping>
+    <filter>
+		<filter-name>innerApiAuthFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<!-- <async-supported>true</async-supported> -->
+	</filter>
+   <filter-mapping>
+		<filter-name>innerApiAuthFilter</filter-name>
+		<url-pattern>/inner/api/*</url-pattern>
+		<!-- <dispatcher>ASYNC</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher> -->
+	</filter-mapping>
+	<filter>
+		<filter-name>clientReportAuthFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+   <filter-mapping>
+		<filter-name>clientReportAuthFilter</filter-name>
+		<url-pattern>/client/report/*</url-pattern>
+	</filter-mapping>
+</web-app>

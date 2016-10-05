@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	 "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.api.ApiUser" table="api_user" lazy="false">
+		<id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<property name="stadiumId" type="long" column="stadium_id" />
+		<property name="appkey" type="string" column="appkey" />
+		<property name="privatekey" type="string" column="privatekey" />
+		<property name="status" type="string" column="status" />
+		<property name="role" type="string" column="role" />
+		<property name="addTime" type="timestamp" column="add_time" />
+	</class>
+</hibernate-mapping>

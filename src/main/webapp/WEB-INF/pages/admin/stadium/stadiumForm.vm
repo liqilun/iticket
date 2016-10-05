@@ -1,0 +1,62 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+		   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		   <h4 class="modal-title" id="dataModalLabel">添加场馆</h4>
+		</div>
+		<form class="form-horizontal" role="form" id="dbform">
+		<div class="modal-body">
+			<div class="form-group">
+				<label for="firstname" class="col-sm-2 control-label">场馆名称</label>
+				<div class="col-sm-10">
+					<input type="hidden" name="id" value="$!stadium.id"/>	
+					<input type="text" class="form-control" name="cnName" placeholder="请输入名字" value="$!stadium.cnName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cnAddress" class="col-sm-2 control-label">场馆地址</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="cnAddress" value="$!stadium.cnAddress">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="contact" class="col-sm-2 control-label">联系人</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="contact" value="$!stadium.contact">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="telephone" class="col-sm-2 control-label">联系电话</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="telephone" value="$!stadium.telephone">
+				</div>
+			</div>
+			#if(!$stadium)
+			<div class="form-group">
+				<label for="appkey" class="col-sm-2 control-label">登录名</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="appkey">
+				</div>
+			</div>
+			#end
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-info" id="sbtForm">提交更改 </button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		</div>
+	   </form>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$('#sbtForm').click(function(){
+		jQuery.post("${basePath}admin/stadium/saveStadium.xhtml", $("#dbform").serialize(),function(result){
+			if(result.success){
+				window.location.reload();
+			}else {
+				alert(result.msg);
+			}
+		});
+	});
+});
+</script>

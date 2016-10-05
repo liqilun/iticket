@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>报表</title>
+<!--[if lte IE 9]>
+<script src="${basePath}bootstrap/respond.min.js"></script>
+<script src="${basePath}bootstrap/html5.js"></script>
+<![endif]-->
+<script src="${basePath}jquery/2.0.3/jquery.min.js"></script>
+<script src="${basePath}bootstrap/js/bootstrap.min.js"></script>
+<script src="${basePath}js/highcharts/highcharts.js"></script>
+<link type="text/css" rel="stylesheet" href="${basePath}bootstrap/css/bootstrap.min.css" />
+</head>
+<body>#set($isProgramReport=true)
+	#parse('WEB-INF/pages/report/menu.vm')
+	<div id="container">
+		<table class="table table-bordered">
+		   <thead>
+		      <tr>
+		         <th>场次</th>
+		         <th>项目</th>
+		         <th>场地</th>
+		         <th>区域</th>
+		         <th>数量</th>
+		         <th>付款金额</th>
+		         <th>优惠金额</th>
+		         <th>收款人</th>
+		         <th>时间</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		   	  #foreach($voucher in $voucherList)
+		      <tr class="active">
+		         <td>$!voucher.scheduleCnName</td>
+		         <td>$!voucher.programCnName</td>
+		         <td>$!voucher.venueCnName</td>
+		         <td>$!voucher.venueAreaCnName</td>
+		         <td>$!voucher.seatNum</td>
+		         <td>$!voucher.seatAmount</td>
+		         <td>$!voucher.discount</td>
+		         <td>$!voucher.memberName</td>
+		         <td>$!DateUtil.format($voucher.addTime,'yyyy-MM-dd HH:mm')</td>
+		      </tr>
+		      #end
+		   </tbody>
+		</table>
+		
+	</div>
+<script>
+
+</script>
+</body>
+</html>

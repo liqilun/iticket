@@ -1,0 +1,1 @@
+#set($methodTypeMap={'member':'用户相关','stadium':'场馆相关','layout':'票版相关','program':'项目相关','schedule':'场次相关','ticket':'票务相关','auth':'权限相关'})

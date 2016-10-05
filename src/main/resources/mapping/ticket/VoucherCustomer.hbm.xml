@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.ticket.VoucherCustomer" table="voucher_customer" lazy="false">
+	    <id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<property name="voucherId" type="long" column="voucher_id"/>
+		<property name="customerName" type="string" column="customer_name"/>
+		<property name="customerMobile" type="string" column="customer_mobile"/>
+		<property name="customerPhone" type="string" column="customer_phone"/>
+		<property name="provinceName" type="string" column="province_name"/>
+		<property name="cityName" type="string" column="city_name"/>
+		<property name="customerAddress" type="string" column="customer_address"/>
+		<property name="transport" type="string" column="transport"/>
+		<property name="msgMobile" type="string" column="msg_mobile"/>
+		<property name="transportAddress" type="string" column="transport_address"/>
+		<property name="relatedInfo" type="string" column="related_info"/>
+		<property name="idnumber" type="string" column="idnumber"/>
+		<property name="addTime" type="timestamp" column="add_time"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+#if($pageUtil && $pageUtil.pageCount > 1)
+<ul class="pagination pull-right">
+	#if($pageUtil.isPrePage())
+		#set($pagePreUrl=$pageUtil.preurl)
+		#if(!$pagePreUrl.startsWith("/"))
+			#set($pagePreUrl=${basePath}+$pageUtil.preurl)
+		#end
+		<li><a href="$pagePreUrl">&laquo;</a></li>
+	#else
+		<li><a href="#" class="disabled">&laquo;</a></li>
+	#end
+	#foreach($pageInfo in $pageUtil.pageInfoList)
+	#set($pageUrl=$pageInfo.url)
+	#if(!$pageUrl.startsWith("/"))
+	#set($pageUrl=${basePath} + $pageInfo.url)
+	#end
+	<li #if($pageInfo.currentPage)class='active'#end><a href="$pageUrl">${pageInfo.pageNo}</a></li>
+	#end
+	#if($pageUtil.isNextPage())
+		#set($pageNextUrl=$pageUtil.nexturl)
+		#if(!$pageNextUrl.startsWith("/"))
+			#set($pageNextUrl=${basePath}+$pageUtil.nexturl)
+		#end
+		<li><a href="$pageNextUrl">&raquo;</a></li>
+	#else
+		<li><a href="#" class="disabled">&raquo;</a></li>
+	#end
+</ul>
+#end

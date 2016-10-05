@@ -1,0 +1,11 @@
+<div class="col-md-10">
+	<ul id="myTab" class="nav nav-tabs">
+		<li><a class="glyphicon glyphicon-home">报表</a></li>
+		<li #if($isMemberReport)class="active"#end>
+		   <a class="glyphicon glyphicon-list" href="${basePath}client/report/index.xhtml">用户报表</a>
+		</li>
+		<li #if($isQryReport)class="active"#end>
+		   <a class="glyphicon glyphicon-list" href="${basePath}client/report/qry.xhtml">查询报表</a>
+		</li>
+	</ul>
+</div>

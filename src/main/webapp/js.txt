@@ -1,0 +1,12 @@
+http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp
+$(document).ready(function(){
+		$('#sbtForm').click(function(){
+			jQuery.post("${basePath}admin/audit/eleccard/saveEcustomer.xhtml", $("#dbform").serialize(),function(result){
+				if(result.success){
+					window.location.reload();
+				}else {
+					alert(result.msg);
+				}
+			});
+		});
+	});

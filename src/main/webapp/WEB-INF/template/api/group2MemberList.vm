@@ -1,0 +1,21 @@
+<data>
+	<groupList>
+		#foreach($group in $groupList)
+		#set($memberList=$memberMap.get($group.id))
+		<group>
+			<groupId>$!group.id</groupId>
+			<groupName>$!group.groupName</groupName>
+			<module>$!group.module</module>
+			<memberList>
+			#foreach($member in $memberList)
+			<member>
+				<memberId>$!member.id</memberId>
+				<status>$!member.status</status>
+				<memberName>$!member.memberName</memberName>
+			</member>
+			#end
+			</memberList>
+		</group>
+		#end
+	</groupList>
+</data>

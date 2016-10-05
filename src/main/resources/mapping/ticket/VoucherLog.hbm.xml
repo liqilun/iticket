@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.ticket.VoucherLog" table="voucher_log" lazy="false">
+	    <id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<property name="voucherId" type="long" column="voucher_id"/>
+		<property name="stadiumId" type="long" column="stadium_id"/>
+		<property name="scheduleId" type="long" column="schedule_id"/>
+		<property name="programId" type="long" column="program_id"/>
+		<property name="memberName" type="string" column="member_name"/>
+		<property name="logType" type="string" column="log_type"/>
+		<property name="memberId" type="long" column="member_id"/>
+		<property name="addTime" type="timestamp" column="add_time" not-null="true"/>
+	</class>
+</hibernate-mapping>

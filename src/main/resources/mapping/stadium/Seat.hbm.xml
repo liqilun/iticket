@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.stadium.Seat" table="venue_area_seat" lazy="false">
+		<id name="id" type="long" column="recordid">
+			<generator class="native" />
+		</id>
+		<property name="venueAreaId" type="long" column="venue_area_id"/>
+		<property name="lineno" type="string" column="lineno"/>
+		<property name="rankno" type="string" column="rankno"/>
+		<property name="x" type="integer" column="x"/>
+		<property name="y" type="integer" column="y"/>
+		<property name="addTime" type="timestamp" column="add_time" not-null="true"/>
+	</class>
+</hibernate-mapping>

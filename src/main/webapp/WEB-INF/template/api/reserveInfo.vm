@@ -1,0 +1,41 @@
+<data>
+	<reserveInfo>
+		<voucherId>$!reserveInfo.voucherId</voucherId>
+		<ticketType>$!reserveInfo.ticketType</ticketType>
+		<payType>$!reserveInfo.payType</payType>
+		<logisticsType>$!reserveInfo.logisticsType</logisticsType>
+		<saleType>$!reserveInfo.saleType</saleType>
+		<disType>$!reserveInfo.disType</disType>
+		#set($priceInfoList=$reserveInfo.priceList)
+		<priceInfoList>
+			#foreach($priceInfo in $priceInfoList)
+			<priceInfo>
+				<programCnName>$!priceInfo.programCnName</programCnName>
+				<programEnName>$!priceInfo.programEnName</programEnName>
+				<scheduleCnName>$!priceInfo.scheduleCnName</scheduleCnName>
+				<scheduleEnName>$!priceInfo.scheduleEnName</scheduleEnName>
+				<playTime>$!priceInfo.playTime</playTime>
+				<venueCnName>$!priceInfo.venueCnName</venueCnName>
+				<venueEnName>$!priceInfo.venueEnName</venueEnName>
+				<venueAreaCnName>$!priceInfo.venueAreaCnName</venueAreaCnName>
+				<venueAreaEnName>$!priceInfo.venueAreaEnName</venueAreaEnName>
+				<totalPrice>$!priceInfo.totalPrice</totalPrice>
+				<totalDiscount>$!priceInfo.totalDiscount</totalDiscount>
+				<discountRate>$!priceInfo.discountRate</discountRate>
+				<seatText>$!priceInfo.seatText</seatText>
+				<quantity>$!priceInfo.quantity</quantity>
+			</priceInfo>
+			#end
+		</priceInfoList>
+		#set($customer=$reserveInfo.customer)
+		#if($customer)
+		<customer>
+			<customerName>$!customer.customerName</customerName>
+			<customerMobile>$!customer.customerMobile</customerMobile>
+			<customerPhone>$!customer.customerPhone</customerPhone>
+			<provinceName>$!customer.provinceName</provinceName>
+			<customerAddress>$!customer.customerAddress</customerAddress>
+		</customer>
+		#end
+	</reserveInfo>
+</data>

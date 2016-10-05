@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+	<title>API通用说明</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link type="text/css" rel="stylesheet" href="${basePath}bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+#set($isApiMenu=true)#set($isApiInfo=true)
+<div class="container">
+	<div class="pageContent">
+		<div class="pageRight pageRight_n">
+			<h3>API通用说明</h3>
+			<div class="inform_content">
+				<h4>数据交互</h4>
+				<p>数据通信采用HTTP协议，返回数据格式为XML，编码默认为UTF-8，<br/>HTTP请求的统一 地址:<br/>
+					<font color="red">
+					1.测试地址：http://114.215.107.90:8080/iticket/showapi/router/rest<br/>
+					</font>
+					合作商接入订票系统时，会分配给商户：商户名(appkey)和密钥(privatekey)<br/>
+				</p>
+	<h4 id="api_params">错误信息返回格式</h4>
+	<xmp>
+	<?xml version="1.0" encoding="utf-8"?> 
+	<data>
+		<error>错误信息文字提示</error> 
+	</data>
+	</xmp>
+
+<h4>系统参数和签名机制</h4>
+<table class="table">	
+	<thead>
+		<tr>
+			<td colspan="3"><font color="red">以下系统参数，每个请求接口必须传递</font></td>
+		</tr>
+		</thead>
+		<tr>
+			<td>appkey </td>
+			<td>String</td>
+			<td>商户或应用标识</td>
+		</tr>
+		<tr>
+			<td>timestamp  </td>
+			<td>String</td>
+			<td>时间戳，2011-06-02 14:30:20; API服务端允许客户端请求时间误差为10分钟。用于用于防replay攻击 </td>
+		</tr>
+		<tr>
+			<td>signmethod</td>
+			<td>String</td>
+			<td>MD5</td>
+		</tr>
+		<tr>
+			<td>v</td>
+			<td>String</td>
+			<td>API协议版本，固定值:1.0 </td>
+		</tr>
+		<tr>
+			<td>format</td>
+			<td>String</td>
+			<td>响应数据格式：目前只支持xml </td>
+		</tr>
+		<tr>
+			<td>sign</td>
+			<td>String</td>
+			<td>API输入参数签名结果</td>
+		</tr>
+</table>
+<div style="margin-top: 15px;">
+	<p>根据参数名称将除sign和signmethod的所有请求参数按照字母先后顺序排序，value无需编码，然后根据签名方法进行签名。appkey和privatekey由个格瓦拉系统分配，其中privatekey不作为系统参数传输。</p>
+	<p><b>md5签名方法：</b><br/>
+	将foo=1,bar=2,baz=3 排序为bar=2,baz=3,foo=1 参数名和参数值链接后，得到拼装字符串bar=2&baz=3&foo=1 md5：将secretcode同时拼接到参数字符串尾部进行md5加密，再转化成大写 sign=md5(bar=2&baz=3&foo=1secretcode))</p>
+</div>
+</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

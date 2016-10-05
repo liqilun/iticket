@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.ticket.ReserveMessage" table="reserve_message" lazy="false">
+	    <id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<property name="voucherId" type="long" column="voucher_id"/>
+		<property name="stadiumId" type="long" column="stadium_id"/>
+		<property name="releaseTime" type="timestamp" column="release_time"/>
+		<property name="tipTime" type="timestamp" column="tip_time"/>
+	</class>
+</hibernate-mapping>

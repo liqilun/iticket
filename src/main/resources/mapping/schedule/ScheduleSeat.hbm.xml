@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.schedule.ScheduleSeat" table="schedule_seat" lazy="false">
+		<id name="id" type="long" column="recordid">
+			<generator class="native" />
+		</id>
+		<version name="version"  type="integer" column="version"/>
+		<property name="lineno" type="string" column="lineno" />
+		<property name="rankno" type="string" column="rankno"/>
+		<property name="x" type="integer" column="x" />
+		<property name="y" type="integer" column="y"/>
+		<property name="scheduleId" type="long" column="schedule_id"/>
+		<property name="priceId" type="long" column="price_id" />
+		<property name="scheduleVenueAreaId" type="long" column="schedule_venue_area_id" />
+		<property name="status" type="integer" column="status"/>
+		<property name="lockUserId" type="long" column="lockuserid" />
+		<property name="lockTime" type="timestamp" column="locktime" />
+		<property name="serialNum" type="integer" column="serialnum" />
+		<property name="barcode" type="string" column="barcode" />
+		<property name="uuid" type="string" column="uuid" />
+		<property name="numUuid" type="string" column="numuuid" />
+	</class>
+</hibernate-mapping>

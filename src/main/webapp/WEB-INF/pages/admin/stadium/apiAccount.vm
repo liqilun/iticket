@@ -1,0 +1,51 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+		   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		   <h4 class="modal-title" id="accountModalLabel">登录账户</h4>
+		</div>
+		<form class="form-horizontal" role="form" id="dbform">
+		<div class="modal-body">
+			<div class="form-group">
+				<label for="memberName" class="col-sm-2 control-label">登录名</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="memberName" value="$!member.memberName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">登录密码</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="password" value="$!member.password">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="appkey" class="col-sm-2 control-label">appkey</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="appkey" value="$!apiUser.appkey">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="privatekey" class="col-sm-2 control-label">私钥</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="privatekey" value="$!apiUser.privatekey">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="privatekey" class="col-sm-2 control-label">退款密码</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="refundPass" value="$!stadium.refundPass">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="privatekey" class="col-sm-2 control-label">重打密码</label>
+				<div class="col-sm-10">
+				   <input type="text" class="form-control" name="reprintPass" value="$!stadium.reprintPass">
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		</div>
+	   </form>
+	</div>
+</div>

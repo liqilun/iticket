@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.program.Program" table="program" lazy="false">
+		<id name="id" type="long" column="recordid">
+			<generator class="native" />
+		</id>
+		<property name="code" type="string" column="code"/>
+		<property name="cnName" type="string" column="cn_name"/>
+		<property name="enName" type="string" column="en_name"/>
+		<property name="stadiumId" type="long" column="stadium_id"/>
+		<property name="venueId" type="long" column="venue_id"/>
+		<property name="startTime" type="timestamp" column="start_time"/>
+		<property name="endTime" type="timestamp" column="end_time"/>
+		<property name="typeId" type="integer" column="type_id"/>
+		<property name="status" type="string" column="status"/>
+		<property name="addTime" type="timestamp" column="add_time" not-null="true"/>
+		<property name="imgurl" type="string" column="imgurl"/>
+		<property name="memberId" type="long" column="member_id" />
+		<property name="delStatus" type="string" column="del_status" />
+	</class>
+</hibernate-mapping>

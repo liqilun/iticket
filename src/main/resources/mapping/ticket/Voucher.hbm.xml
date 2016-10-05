@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.ticket.Voucher" table="voucher" lazy="false">
+		<id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<version name="version"  type="integer" column="version"/>
+		<property name="stand" type="string" column="stand"/>
+		<property name="voucherNo" type="string" column="voucher_no"/>
+		<property name="stadiumId" type="long" column="stadium_id"/>
+		<property name="venueId" type="long" column="venue_id"/>
+		<property name="programId" type="long" column="program_id"/>
+		<property name="scheduleId" type="long" column="schedule_id"/>
+		<property name="programCnName" type="string" column="program_name"/>
+		<property name="programEnName" type="string" column="program_enname"/>
+		<property name="scheduleCnName" type="string" column="schedule_name"/>
+		<property name="scheduleEnName" type="string" column="schedule_enname"/>
+		<property name="venueCnName" type="string" column="venue_name"/>
+		<property name="venueEnName" type="string" column="venue_enname"/>
+		<property name="venueAreaCnName" type="string" column="venue_area_name"/>
+		<property name="venueAreaEnName" type="string" column="venue_area_enname"/>
+		<property name="playTime" type="timestamp" column="play_time"/>
+		
+		<property name="seatNum" type="integer" column="seat_num"/>
+		<property name="seatAmount" type="double" column="seat_amount"/>
+		<property name="seatText" type="string" column="seat_text"/>
+		<property name="discount" type="double" column="discount"/>
+		<property name="showPrice" type="string" column="show_price"/>
+		<property name="ticketType" type="string" column="ticket_type"/>
+		<property name="pzType" type="string" column="pz_type"/>
+		<property name="disType" type="string" column="dis_type"/>
+		<property name="releaseTime" type="timestamp" column="release_time"/>
+		<property name="tipTime" type="timestamp" column="tip_time"/>
+		<property name="payStatus" type="string" column="pay_status"/>
+		<property name="reserveId" type="long" column="reserve_id"/>
+		<property name="reserveStatus" type="string" column="reserve_status"/>
+		<property name="refundStatus" type="string" column="refund_status"/>
+		<property name="passwd" type="string" column="passwd"/>
+		<property name="payMethod" type="string" column="pay_method"/>
+		<property name="saleType" type="integer" column="sale_type"/>
+		<property name="memberId" type="long" column="member_id" />
+		<property name="memberName" type="string" column="member_name" />
+		<property name="addTime" type="timestamp" column="add_time"/>
+	</class>
+</hibernate-mapping>

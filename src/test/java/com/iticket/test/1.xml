@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<seatList>
+		<seat>
+		 <seatId>1</seatId>
+		 <venueAreaId>2</venueAreaId>
+		 <lineno>1</lineno>
+		 <rankno>2</rankno>
+		 <x>12</x><y>13</y>
+		</seat>
+		<seat>
+		 <seatId>2</seatId>
+		 <venueAreaId>3</venueAreaId>
+		 <lineno>3</lineno>
+		 <rankno>4</rankno>
+		 <x>10</x><y>11</y>
+		</seat>
+	</seatList>
+</data>

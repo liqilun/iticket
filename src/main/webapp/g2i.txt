@@ -1,0 +1,3 @@
+出票后通知：/tbs/ticket/ticketNotification.xhtml
+出票接口：/tbs/ticket/sell.xhtml
+预留接口:/tbs/ticket/reservedSeatTicket.xhtml

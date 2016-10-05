@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.schedule.ScheduleStand" table="schedule_stand" lazy="false">
+		<id name="id" type="long" column="recordid">
+			<generator class="native" />
+		</id>
+		<version name="version"  type="integer" column="version"/>
+		<property name="scheduleId" type="long" column="schedule_id"/>
+		<property name="priceId" type="long" column="price_id" />
+		<property name="scheduleVenueAreaId" type="long" column="schedule_venue_area_id" />
+		<property name="status" type="integer" column="status"/>
+		<property name="lockTime" type="timestamp" column="lock_time" />
+		<property name="serialNum" type="integer" column="serial_num" />
+		<property name="barcode" type="string" column="barcode" />
+		<property name="uuid" type="string" column="uuid" />
+		<property name="numUuid" type="string" column="num_uuid" />
+	</class>
+</hibernate-mapping>

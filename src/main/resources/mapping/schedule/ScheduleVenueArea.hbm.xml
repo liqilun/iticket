@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.schedule.ScheduleVenueArea" table="schedule_venuearea" lazy="false">
+		<id name="id" type="long" column="recordid">
+			<generator class="native" />
+		</id>
+		<property name="cnName" type="string" column="cn_name"/>
+		<property name="enName" type="string" column="en_name"/>
+		<property name="description" type="string" column="description"/>
+		<property name="standing" type="string" column="standing"/>
+		<property name="total" type="integer" column="total" />
+		<property name="vlimit" type="integer" column="vlimit" />
+		<property name="icon" type="string" column="icon"/>
+		<property name="venueId" type="long" column="venue_id"/>
+		<property name="venueAreaId" type="long" column="venue_area_id" />
+		<property name="hotZone" type="string" column="hot_zone" />
+		<property name="gridWidth" type="integer" column="grid_width" />
+		<property name="gridHeight" type="integer" column="grid_height" />
+		<property name="scheduleId" type="long" column="schedule_id" />
+		<property name="status" type="string" column="status" />
+		<property name="addTime" type="timestamp" column="add_time" not-null="true"/>
+	</class>
+</hibernate-mapping>

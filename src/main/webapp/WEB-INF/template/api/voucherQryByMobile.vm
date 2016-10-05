@@ -1,0 +1,46 @@
+<data>
+	<voucherList>
+		#foreach($voucher in $voucherList)
+		<voucher>
+			<voucherId>$!voucher.id</voucherId>
+			<voucherNo>$!voucher.voucherNo</voucherNo>
+			<scheduleId>$!voucher.scheduleId</scheduleId>
+			<programId>$!voucher.programId</programId>
+			<seatAmount>$!voucher.seatAmount</seatAmount>
+			<seatNum>$!voucher.seatNum</seatNum>
+			<addTime>$!voucher.addTime</addTime>
+			<ticketType>$!voucher.ticketType</ticketType>
+			<pzType>$!voucher.pzType</pzType>
+			<disType>$!voucher.disType</disType>
+			<discount>$!voucher.discount</discount>
+			<disTypeText>$!voucher.gainDisTypeText()</disTypeText>
+			<ticketTypeText>$!voucher.gainTicketTypeText()</ticketTypeText>
+			<pzTypeText>$!voucher.gainTypeText()</pzTypeText>
+			<scheduleCnName>$!voucher.scheduleCnName</scheduleCnName>
+			<scheduleEnName>$!voucher.scheduleEnName</scheduleEnName>
+			<programCnName>$!voucher.programCnName</programCnName>
+			<programEnName>$!voucher.programEnName</programEnName>
+			<venueCnName>$!voucher.venueCnName</venueCnName>
+			<venueEnName>$!voucher.venueEnName</venueEnName>
+			<venueAreaCnName>$!voucher.venueAreaCnName</venueAreaCnName>
+			<venueAreaEnName>$!voucher.venueAreaEnName</venueAreaEnName>
+			<playTime>$!DateUtil.formatTimestamp($!voucher.playTime)</playTime>
+			<releaseTime>$!DateUtil.formatTimestamp($!voucher.releaseTime)</releaseTime>
+			<tipTime>$!DateUtil.formatTimestamp($!voucher.tipTime)</tipTime>
+			<reserveStatus>$!voucher.reserveStatus</reserveStatus>
+			<payStatus>$!voucher.payStatus</payStatus>
+			<payStatusText>$!voucher.gainPayStatusText()</payStatusText>
+			<seatText>$!voucher.seatText</seatText>
+			<addTime>$!DateUtil.formatTimestamp($!voucher.addTime)</addTime>
+			#set($customer=$customerMap.get($voucher.id))
+			<customer>
+				<customerName>$!customer.customerName</customerName>
+				<customerMobile>$!customer.customerMobile</customerMobile>
+				<customerPhone>$!customer.customerPhone</customerPhone>
+				<provinceName>$!customer.provinceName</provinceName>
+				<customerAddress>$!customer.customerAddress</customerAddress>
+			</customer>
+		</voucher>
+		#end
+	</voucherList>
+</data>

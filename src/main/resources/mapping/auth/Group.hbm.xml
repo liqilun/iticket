@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.auth.Group" table="sgroup" lazy="false">
+		<id name="id" type="long" column="recordid">
+			<generator class="native" />
+		</id>
+		<property name="stadiumId" type="long" column="stadium_id" />
+		<property name="groupName" type="string" column="group_name"/>
+		<property name="module" type="string" column="module"/>
+		<property name="memberId" type="long" column="member_id"/>
+		<property name="memberName" type="string" column="member_name" />
+		<property name="addTime" type="timestamp" column="add_time" not-null="true"/>
+	</class>
+</hibernate-mapping>

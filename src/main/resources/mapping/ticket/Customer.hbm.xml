@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.ticket.Customer" table="customer" lazy="false">
+		<id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<property name="name" type="string" column="name"/>
+		<property name="telephone" type="string" column="telephone"/>
+		<property name="mobile" type="string" column="mobile"/>
+		<property name="address" type="string" column="address"/>
+		<property name="addTime" type="timestamp" column="add_time" not-null="true"/>
+		<property name="memberId" type="long" column="member_id" />
+		<property name="stadiumId" type="long" column="stadium_id" />
+	</class>
+</hibernate-mapping>

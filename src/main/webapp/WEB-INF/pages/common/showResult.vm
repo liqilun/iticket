@@ -1,0 +1,59 @@
+<!Doctype html>
+<html>
+<head><!-- SUCCESS_HEAD -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>提示</title>
+	<style type="text/css">
+		@media screen and (max-width:1200px) {
+		    .ui_layout{width:960px;}
+		}
+	</style>
+</head>
+<body>
+<div class="ui_layout">
+	<div class="noPlayList">
+		#if($errorMsgs)
+			#foreach($msg in $VmUtils.splitByWholeSeparator($errorMsgs, '@@'))
+				<h2>$VmUtils.escapeHtml($msg)</h2>
+			#end
+		#end
+		#if($successMsgs)
+			#foreach($msg in $VmUtils.splitByWholeSeparator($successMsgs, '@@'))
+				<h2>$VmUtils.escapeHtml($msg)</h2>
+			#end
+		#end
+		#if($params.errorMsgs)
+			#foreach($msg in $VmUtils.splitByWholeSeparator($params.errorMsgs, '@@'))
+				<h2>$VmUtils.escapeHtml($msg)</h2>
+			#end
+		#end
+		#if($params.successMsgs)
+			#foreach($msg in $VmUtils.splitByWholeSeparator($params.successMsgs, '@@'))
+				<h2>$VmUtils.escapeHtml($msg)</h2>
+			#end
+		#end
+		#foreach($msg in $msgList)
+			<h2>$VmUtils.escapeHtml($msg)</h2>
+		#end
+		<p>
+			#if($!params.returnUrl)
+			#if($VmUtils.startsWith($!params.returnUrl,"http"))
+			<a href="$!params.returnUrl">点击返回</a>
+			#else
+			<a href="${basePath}$!params.returnUrl">点击返回</a>
+			#end
+			#elseif($forwardUrl)<a href="${basePath}$forwardUrl">点击此链接设置</a>
+			#elseif($returnUrl)
+			#if($VmUtils.startsWith($!returnUrl,"http"))
+			<a href="$!returnUrl">点击返回</a>
+			#else
+			<a href="${basePath}${returnUrl}">点击返回</a>
+			#end
+			#else
+			<a href="${basePath}">返回首页</a>
+			#end
+		</p>
+	</div>
+</div>
+</body>
+</html>

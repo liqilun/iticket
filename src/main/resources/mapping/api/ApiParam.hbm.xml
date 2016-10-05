@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	 "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iticket.model.api.ApiParam" table="api_param" lazy="false">
+		<id name="id" column="recordid" type="long" >
+			<generator class="native" />
+		</id>
+		<property name="field" type="string" column="field" />
+		<property name="description" type="string" column="description" />
+		<property name="fieldName" type="string" column="fieldName" />
+		<property name="type" type="string" column="type" />
+		<property name="methodId" type="long" column="methodid" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,4 @@
+<data>
+	$!VmUtils.xmlOutput('voucher', $resMap, $hasField, $fieldList)
+	$!VmUtils.xmlOutputList("voucherDetailList","voucherDetail", $!resMapList, $hasField, $fieldList)
+</data>
