@@ -6,7 +6,7 @@
 				<li class="light-blue">
 					<a class="dropdown-toggle" href="#" data-toggle="dropdown">
 						<img alt="Jason's Photo" src="${basePath}ace/assets/avatars/user.jpg" class="nav-user-photo">
-						<span class="user-info"><small>欢迎</small>Jason</span>
+						<span class="user-info"><small>欢迎</small>$!{session_user.username}</span>
 						<i class="icon-caret-down"></i>
 					</a>
 					<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
