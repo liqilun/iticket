@@ -85,8 +85,8 @@ public class ScheduleServiceImpl extends BaseServiceImpl implements ScheduleServ
 		if(StringUtils.isBlank(s.getCnName())){
 			throw new IException("场次名称不能为空");
 		}
-		if(StringUtils.length(s.getCnName())<5){
-			throw new IException("场次名称至少5个字符");
+		if(StringUtils.isBlank(s.getCnName())){
+			throw new IException("场次名称不能为空");
 		}
 		if(StringUtils.isBlank(s.getSeat())){
 			throw new IException("是否为支持选座不能为空");

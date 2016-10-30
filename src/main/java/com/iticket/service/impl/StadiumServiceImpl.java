@@ -83,6 +83,8 @@ public class StadiumServiceImpl extends BaseServiceImpl implements StadiumServic
 			Seat seat = new Seat(venueAreaId, xseat.getLineno(), xseat.getRankno(), xseat.getX(), xseat.getY());
 			nseatList.add(seat);
 		}
+		venueArea.setSeatNum(nseatList.size());
+		baseDao.saveObject(venueArea);
 		baseDao.saveObjectList(nseatList);
 	}
 

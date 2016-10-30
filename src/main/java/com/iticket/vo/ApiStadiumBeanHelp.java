@@ -48,6 +48,7 @@ public class ApiStadiumBeanHelp {
 		resMap.put("standing", area.getStanding());
 		resMap.put("total", area.getTotal());
 		resMap.put("vlimit", area.getVlimit());
+		resMap.put("seatNum", area.getSeatNum());
 		if(StringUtils.isNotBlank(area.getIcon())){
 			resMap.put("icon", Config.IMAGE_PATH + area.getIcon());
 		}

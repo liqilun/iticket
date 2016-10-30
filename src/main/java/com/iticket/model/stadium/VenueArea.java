@@ -24,6 +24,8 @@ public class VenueArea extends BaseObject {
 	private String enName;
 	//区域描述
 	private String description;
+	//座位数
+	private Integer seatNum;
 	//是否站票
 	private String standing;
 	//站票总量:站票最多能卖多少票
@@ -54,6 +56,7 @@ public class VenueArea extends BaseObject {
 		this.venueId = venue.getId();
 		this.memberId = member.getId();
 		this.status = "Y";
+		this.seatNum = 0;
 		this.addTime = DateUtil.getCurFullTimestamp();
 	}
 	public Long getId() {
@@ -180,5 +183,11 @@ public class VenueArea extends BaseObject {
 	}
 	public void setStadiumId(Long stadiumId) {
 		this.stadiumId = stadiumId;
+	}
+	public Integer getSeatNum() {
+		return seatNum;
+	}
+	public void setSeatNum(Integer seatNum) {
+		this.seatNum = seatNum;
 	}
 }

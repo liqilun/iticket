@@ -21,5 +21,6 @@
 		<property name="addTime" type="timestamp" column="add_time" not-null="true"/>
 		<property name="memberId" type="long" column="member_id" />
 		<property name="status" type="string" column="status"/>
+		<property name="seatNum" type="integer" column="seat_num"/>
 	</class>
 </hibernate-mapping>
