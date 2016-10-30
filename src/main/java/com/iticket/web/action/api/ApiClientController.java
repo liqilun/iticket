@@ -37,6 +37,9 @@ public class ApiClientController extends BaseApiController {
 		if(!StringUtils.equalsIgnoreCase(member.getStatus(), "Y")){
 			return getErrorXmlView(model, "用户已被禁用或删除");
 		}
+		if(!member.getStadiumId().equals(getApiUser(request).getStadiumId())){
+			return getErrorXmlView(model, "账户信息不匹配");
+		}
 		Map<String, Object> resMap = getResMap(member);
 		return getOpenApiXmlDetail(resMap, "member", model, request);
 	}
