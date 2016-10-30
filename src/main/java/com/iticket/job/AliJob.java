@@ -26,7 +26,7 @@ public class AliJob {
 	@Autowired@Qualifier("ticketService")
 	private TicketService ticketService;
 	public void cancelReverse(){
-		dbLogger.warn("cancelReverse task start");
+		//dbLogger.warn("cancelReverse task start");
 		String hql = "from Voucher where pzType=? and payStatus=? and reserveStatus=? and releaseTime>?";
 		List<Voucher> voucherList = daoService.findByHql(hql, VoucherType.PZTYPE_YL, "N", "Y", DateUtil.getCurFullTimestamp());
 		ClientMember member = daoService.getObject(ClientMember.class, 0L);
@@ -38,7 +38,7 @@ public class AliJob {
 				dbLogger.warn(voucher.getId() + ":" + e.getMsg());
 			}
 		}
-		dbLogger.warn("cancelReverse task end");
+		//dbLogger.warn("cancelReverse task end");
 	}
 	
 }
