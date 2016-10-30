@@ -100,6 +100,7 @@ public class OpenApiAuthServlet extends HttpServlet {
 		String url = apiCfg.getReqUrl();
 		HttpResult result = HttpUtils.postUrlAsString("http://localhost:8080/iticket/" + url, params, null, "utf-8");
 		if(!result.isSuccess()){
+			dbLogger.error(url+":" + result.getStatus()+":" + params.toString());
 			ApiFilterHelper.writeErrorResponse(response, "1004", "服务器异常：" + result.getStatus());
 			return;
 		}
