@@ -37,6 +37,7 @@ public class ApiStadiumBeanHelp {
 		resMap.put("stadiumId", venue.getStadiumId());
 		resMap.put("orderNo", venue.getOrderNo());
 		resMap.put("status", venue.getStatus());
+		resMap.put("seatNum", venue.getSeatNum() );
 		return resMap;
 	}
 	public static Map<String, Object> getVenueArea(VenueArea area){

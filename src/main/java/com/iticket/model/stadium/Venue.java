@@ -28,6 +28,14 @@ public class Venue extends BaseObject {
 	private Long memberId;
 	//是否有效[Y,N,D]
 	private String status;
+	//座位数
+	private Integer seatNum;
+	public Integer getSeatNum() {
+		return seatNum;
+	}
+	public void setSeatNum(Integer seatNum) {
+		this.seatNum = seatNum;
+	}
 	//时间
 	private Timestamp addTime;	
 	public Venue(){
@@ -37,6 +45,7 @@ public class Venue extends BaseObject {
 		this.stadiumId = member.getStadiumId();
 		this.status = "Y";
 		this.memberId = member.getId();
+		this.seatNum = 0;
 		this.addTime = DateUtil.getCurFullTimestamp();
 	}
 	public Long getId() {

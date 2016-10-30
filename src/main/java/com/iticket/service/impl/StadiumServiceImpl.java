@@ -10,6 +10,7 @@ import com.iticket.model.api.ApiUser;
 import com.iticket.model.api.ClientMember;
 import com.iticket.model.stadium.Seat;
 import com.iticket.model.stadium.Stadium;
+import com.iticket.model.stadium.Venue;
 import com.iticket.model.stadium.VenueArea;
 import com.iticket.service.IException;
 import com.iticket.service.StadiumService;
@@ -86,6 +87,16 @@ public class StadiumServiceImpl extends BaseServiceImpl implements StadiumServic
 		venueArea.setSeatNum(nseatList.size());
 		baseDao.saveObject(venueArea);
 		baseDao.saveObjectList(nseatList);
+		updVenueSeatNum(venueArea.getVenueId());
 	}
-
+	private void updVenueSeatNum(Long venueId){
+		List<VenueArea> areaList = baseDao.getObjectListByField(VenueArea.class, "venueId", venueId);
+		int sum = 0;
+		for(VenueArea area : areaList){
+			sum = sum + area.getSeatNum();
+		}
+		Venue venue = baseDao.getObject(Venue.class, venueId);
+		venue.setSeatNum(sum);
+		baseDao.saveObject(venue);
+	}
 }
