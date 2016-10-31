@@ -55,6 +55,9 @@ public class ApiScheduleController extends BaseApiController{
 		} catch (IException e) {
 			e.printStackTrace();
 			return getErrorXmlView(model, e.getMsg());
+		}catch (Exception e) {
+			e.printStackTrace();
+			return getErrorXmlView(model, e.getMessage());
 		}
 		if(schedule==null){
 			return getErrorXmlView(model, "创建场次异常");
