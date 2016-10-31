@@ -103,6 +103,8 @@ public class OpenApiAuthServlet extends HttpServlet {
 			dbLogger.error(url+":" + result.getStatus()+":" + params.toString());
 			ApiFilterHelper.writeErrorResponse(response, "1004", "服务器异常：" + result.getStatus());
 			return;
+		}else {
+			dbLogger.warn(url+":" +  params.toString()+","+result.getResponse());
 		}
 		response.setContentType("text/xml; charset=UTF-8");
 		try {
