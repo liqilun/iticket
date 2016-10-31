@@ -104,7 +104,7 @@ public class OpenApiAuthServlet extends HttpServlet {
 			ApiFilterHelper.writeErrorResponse(response, "1004", "服务器异常：" + result.getStatus());
 			return;
 		}else {
-			dbLogger.warn(url+":" +  params.toString()+","+result.getResponse());
+			dbLogger.warn(ApiUtil.getFullReq("http://114.215.107.90:8080/iticket/showapi/router/rest", nameValueMap)+","+result.getResponse());
 		}
 		response.setContentType("text/xml; charset=UTF-8");
 		try {

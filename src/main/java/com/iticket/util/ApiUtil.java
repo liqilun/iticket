@@ -37,4 +37,14 @@ public class ApiUtil {
 		}
 		return StringUtils.substringBeforeLast(orgin.toString(), "&") + secretCode;
 	}
+	public static void main(String[] args){
+		TreeMap<String, String> param = new TreeMap<String, String>();
+		param.put("sign", "123");
+		param.put("appkey","123");
+		System.out.println(getFullReq("http://114.215.107.90:8080/iticket/showapi/router/rest",param));
+	}
+	public static String getFullReq(String http, TreeMap<String, String> param){
+		String pstr = http+"?"+param.toString().replace(", ", "&").replace("{", "").replace("}", "");
+		return pstr;
+	}
 }
