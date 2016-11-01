@@ -46,7 +46,7 @@ public class ReportController extends BaseController{
 		String hql = "select new map(memberId as memberId, max(memberName) as memberName,count(*) as count, sum(seatNum) as seatNum, sum(seatAmount) as seatAmount, sum(discount) as discount) "
 				+ "from Voucher where stadiumId=? and payStatus=? and refundStatus=? and addTime>=? and addTime<=? ";
 		if(programId!=null){
-			hql = hql + " programId='" + programId + "' ";
+			hql = hql + " and programId='" + programId + "' ";
 		}
 		hql= hql + " group by memberId";
 		List<Map> resMapList = daoService.findByHql(hql, getStadiumId(request), "Y", "N", startTime, endTime);
