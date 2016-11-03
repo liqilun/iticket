@@ -84,7 +84,7 @@ public class InnerApiAuthenticationFilter extends OncePerRequestFilter  {
 			if(!StringUtils.equalsIgnoreCase(apiMethod.getModule(), "common")){
 				Set<String> moduleList = authService.getMemberModule(member);
 				if(!moduleList.contains(apiMethod.getModule())){
-					dbLogger.warn(member.getMemberName() + "," + method + "无权访问！");
+					dbLogger.error(member.getMemberName() + "," + method + "无权访问！");
 					ApiFilterHelper.writeErrorResponse(response, method+"无权访问！");
 					return;
 				}
