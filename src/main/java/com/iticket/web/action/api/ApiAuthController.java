@@ -73,6 +73,17 @@ public class ApiAuthController extends BaseApiController {
 		}
 		return getOpenApiXmlList(resMapList, "groupList,group", model, request);
 	}
+	@RequestMapping("/inner/api/auth/delGroup.xhtml")
+	public String groupList(Long groupId, ModelMap model, HttpServletRequest request) {
+		Group group = daoService.getObject(Group.class, groupId);
+		if(!group.getStadiumId().equals(getStadiumId(request))){
+			return getErrorXmlView(model, "非法操作");
+		}
+		List<Member2Group> m2gList = daoService.getObjectListByField(Member2Group.class, "groupId", groupId);
+		daoService.removeObjectList(m2gList);
+		daoService.removeObject(group);
+		return getSuccessXmlView(model);
+	}
 	@RequestMapping("/inner/api/auth/addClientMember.xhtml")
 	public String addClientMember(String memberName, String password, String groupIds, ModelMap model, HttpServletRequest request) {
 		try {
