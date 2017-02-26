@@ -70,7 +70,7 @@ public class ApiClientController extends BaseApiController {
 		resMap.put("memberName", member.getMemberName());
 		resMap.put("module", StringUtils.join(moduleList, ","));
 		resMap.put("reportUrl", config.getString("reportUrl"));
-		resMap.put("layOutSize", "330*200,300*180,280*160,560*220,338*238,303*326,776*315,846*346");
+		resMap.put("layOutSize", "338*238,303*326,776*315,846*346");
 		return resMap;
 	}
 }

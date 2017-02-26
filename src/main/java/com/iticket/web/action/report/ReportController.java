@@ -3,6 +3,7 @@ package com.iticket.web.action.report;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.iticket.constant.VoucherType;
 import com.iticket.model.ticket.Voucher;
 import com.iticket.model.ticket.VoucherCustomer;
+import com.iticket.model.ticket.VoucherDetail;
 import com.iticket.service.ProgramService;
 import com.iticket.web.action.BaseController;
 
@@ -42,15 +44,51 @@ public class ReportController extends BaseController{
 		query.add(Restrictions.eq("refundStatus", "N"));
 		query.add(Restrictions.ge("addTime", startTime));
 		query.add(Restrictions.le("addTime", endTime));
-		query.setProjection(Projections.groupProperty("memberId"));
-		String hql = "select new map(memberId as memberId, max(memberName) as memberName,count(*) as count, sum(seatNum) as seatNum, sum(seatAmount) as seatAmount, sum(discount) as discount) "
-				+ "from Voucher where stadiumId=? and payStatus=? and refundStatus=? and addTime>=? and addTime<=? ";
 		if(programId!=null){
-			hql = hql + " and programId='" + programId + "' ";
+			query.add(Restrictions.eq("programId", programId));
 		}
-		hql= hql + " group by memberId";
-		List<Map> resMapList = daoService.findByHql(hql, getStadiumId(request), "Y", "N", startTime, endTime);
-		model.put("resMapList", resMapList);
+		List<Voucher> voucherList = daoService.findByCriteria(query);
+		Map<Long, String> memberMap = new HashMap<Long, String>();
+		Map<Long, Integer> countMap = new HashMap<Long, Integer>();
+		Map<Long, Integer> seatNumMap = new HashMap<Long, Integer>();
+		Map<Long, Double> seatAmountMap = new HashMap<Long, Double>();
+		Map<Long, Double> discountMap = new HashMap<Long, Double>();
+		Map<Double, Integer> priceQuantityMap = new HashMap<Double, Integer>();
+		for(Voucher voucher : voucherList){
+			Long memberId = voucher.getMemberId();
+			String memberName = memberMap.get(memberId);
+			int count = 1;
+			int seatNum = voucher.getSeatNum();
+			double seatAmount = voucher.getSeatAmount();
+			double discount = voucher.getDiscount();
+			if(StringUtils.isBlank(memberName)){
+				memberMap.put(voucher.getMemberId(), voucher.getMemberName());
+			}else {
+				count = countMap.get(memberId) + count;
+				seatNum = seatNumMap.get(memberId) + seatNum;
+				seatAmount = seatAmountMap.get(memberId) + seatAmount;
+				discount = discountMap.get(memberId) + discount;
+			}
+			countMap.put(memberId, count);
+			seatNumMap.put(memberId, seatNum);
+			seatAmountMap.put(memberId, seatAmount);
+			discountMap.put(memberId, discount);
+			
+			List<VoucherDetail> detailList = daoService.getObjectListByField(VoucherDetail.class, "voucherId", voucher.getId());
+			for(VoucherDetail detail : detailList){
+				Integer quantity = priceQuantityMap.get(detail.getTicketPrice());
+				if(quantity == null){
+					quantity = 0;
+				}
+				priceQuantityMap.put(detail.getTicketPrice(), quantity+1);
+			}
+		}
+		model.put("memberMap", memberMap);
+		model.put("countMap", countMap);
+		model.put("seatNumMap", seatNumMap);
+		model.put("seatAmountMap", seatAmountMap);
+		model.put("discountMap", discountMap);
+		model.put("priceQuantityMap", priceQuantityMap);
 		return "report/index.vm";
 	}
 	@RequestMapping("/client/report/qry.xhtml")
